@@ -492,30 +492,295 @@
        TODO
     ========================= */
 
-    .todo-list {
-  display: flex;
-  flex-direction: column;
-  gap: 9px;
+    /* =========================
+   TO DO LIST
+   液態寬度＋橫向表格
+========================= */
 
-  /* 超過畫面寬度時可以左右拖曳 */
-  overflow-x: auto;
-  overflow-y: visible;
-
-  /* 保留底部水平捲軸空間 */
-  padding-bottom: 8px;
-
+.todo-list {
   width: 100%;
+  max-width: 100%;
+  min-width: 0;
 }
 
+/* 橫向滑動區 */
+.todo-table-scroll {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+  -webkit-overflow-scrolling: touch;
+  padding-bottom: 8px;
+  scrollbar-width: thin;
+}
 
-/* 每一筆待辦事項改成橫向排列 */
-.todo-row {
-  min-width: 900px;
+/* Chrome / Edge / Safari */
+.todo-table-scroll::-webkit-scrollbar {
+  height: 8px;
+}
 
-  border: 1px solid #e9edf1;
-  border-radius: 11px;
-  background: #fff;
+.todo-table-scroll::-webkit-scrollbar-track {
+  background: #f1f3f5;
+  border-radius: 10px;
+}
+
+.todo-table-scroll::-webkit-scrollbar-thumb {
+  background: #c4cbd1;
+  border-radius: 10px;
+}
+
+.todo-table-scroll::-webkit-scrollbar-thumb:hover {
+  background: #aeb6bd;
+}
+
+/* 表格本體 */
+.todo-table {
+  width: 100%;
+  min-width: 1050px;
+  border-collapse: separate;
+  border-spacing: 0;
+  table-layout: fixed;
+}
+
+/* 欄位寬度 */
+.todo-table .todo-col-check {
+  width: 60px;
+}
+
+.todo-table .todo-col-name {
+  width: 280px;
+}
+
+.todo-table .todo-col-date {
+  width: 130px;
+}
+
+.todo-table .todo-col-priority {
+  width: 110px;
+}
+
+.todo-table .todo-col-progress {
+  width: 150px;
+}
+
+.todo-table .todo-col-note {
+  width: 300px;
+}
+
+.todo-table .todo-col-action {
+  width: 70px;
+}
+
+/* 表頭 */
+.todo-table thead th {
+  height: 44px;
+  padding: 10px 12px;
+  background: #f6f8fa;
+  border-top: 1px solid #e7ebee;
+  border-bottom: 1px solid #e1e6ea;
+  color: #707b84;
+  font-size: 12px;
+  font-weight: 700;
+  text-align: left;
+  white-space: nowrap;
+}
+
+.todo-table thead th:first-child {
+  border-left: 1px solid #e7ebee;
+  border-radius: 10px 0 0 0;
+  text-align: center;
+}
+
+.todo-table thead th:last-child {
+  border-right: 1px solid #e7ebee;
+  border-radius: 0 10px 0 0;
+  text-align: center;
+}
+
+/* 主要資料列 */
+.todo-table tbody tr.todo-main-row td {
+  height: 66px;
+  padding: 10px 12px;
+  background: #ffffff;
+  border-bottom: 1px solid #edf0f2;
+  border-left: 1px solid #edf0f2;
+  vertical-align: middle;
+}
+
+.todo-table tbody tr.todo-main-row td:last-child {
+  border-right: 1px solid #edf0f2;
+}
+
+/* 最後一筆資料圓角 */
+.todo-table tbody tr.todo-main-row:last-of-type td:first-child {
+  border-radius: 0 0 0 10px;
+}
+
+.todo-table tbody tr.todo-main-row:last-of-type td:last-child {
+  border-radius: 0 0 10px 0;
+}
+
+/* 完成 checkbox */
+.todo-check-cell {
+  text-align: center;
+}
+
+.todo-check {
+  width: 18px;
+  height: 18px;
+  margin: 0;
+  cursor: pointer;
+}
+
+/* 待辦事項 */
+.todo-name-cell {
+  min-width: 0;
+}
+
+.todo-name {
+  font-size: 14px;
+  font-weight: 700;
+  color: #36414a;
+  line-height: 1.5;
+  word-break: break-word;
+}
+
+.todo-name.completed {
+  color: #a0a8ae;
+  text-decoration: line-through;
+}
+
+/* 日期 */
+.todo-date-cell {
+  color: #66727b;
+  font-size: 12px;
+  white-space: nowrap;
+}
+
+/* 備註 */
+.todo-note-cell {
+  max-width: 300px;
+  color: #8a949c;
+  font-size: 12px;
+  line-height: 1.5;
+  white-space: nowrap;
   overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* 重要程度 */
+.todo-priority {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 42px;
+  padding: 4px 9px;
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.priority-high {
+  background: #fff0f0;
+  color: #d85c5c;
+}
+
+.priority-medium {
+  background: #fff7df;
+  color: #b58a26;
+}
+
+.priority-low {
+  background: #eef7ef;
+  color: #65916b;
+}
+
+/* 完成進度 */
+.todo-progress-cell {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 120px;
+}
+
+.todo-mini-progress {
+  width: 80px;
+  height: 7px;
+  flex-shrink: 0;
+  background: #edf0f3;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.todo-mini-progress-inner {
+  height: 100%;
+  background: #4f8df7;
+  border-radius: inherit;
+  transition: width 0.25s ease;
+}
+
+.todo-progress-text {
+  min-width: 38px;
+  font-size: 11px;
+  font-weight: 700;
+  color: #69747d;
+}
+
+/* 操作 */
+.todo-action-cell {
+  text-align: center;
+  white-space: nowrap;
+}
+
+/* 子任務 */
+.todo-subtask-row td {
+  padding: 9px 12px 10px 72px !important;
+  background: #fafbfc !important;
+  border-bottom: 1px solid #edf0f2;
+}
+
+.todo-subtask-wrap {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px 16px;
+}
+
+.todo-subtask-title {
+  font-size: 11px;
+  font-weight: 700;
+  color: #8a949c;
+  margin-right: 4px;
+}
+
+.todo-subtask-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 11px;
+  color: #69747d;
+  white-space: nowrap;
+}
+
+.todo-subtask-item input {
+  width: 14px;
+  height: 14px;
+  margin: 0;
+}
+
+.todo-subtask-item span.done {
+  color: #a7afb5;
+  text-decoration: line-through;
+}
+
+/* 空白狀態 */
+.todo-empty {
+  padding: 35px 20px;
+  text-align: center;
+  color: #9aa3aa;
+  font-size: 13px;
+}
 }
 
 
