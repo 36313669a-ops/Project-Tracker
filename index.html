@@ -493,10 +493,189 @@
     ========================= */
 
     .todo-list {
-      display: flex;
-      flex-direction: column;
-      gap: 9px;
-    }
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+
+  /* 超過畫面寬度時可以左右拖曳 */
+  overflow-x: auto;
+  overflow-y: visible;
+
+  /* 保留底部水平捲軸空間 */
+  padding-bottom: 8px;
+
+  width: 100%;
+}
+
+
+/* 每一筆待辦事項改成橫向排列 */
+.todo-row {
+  min-width: 900px;
+
+  border: 1px solid #e9edf1;
+  border-radius: 11px;
+  background: #fff;
+  overflow: hidden;
+}
+
+
+/* 待辦主要內容改成橫向 */
+.todo-main {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+
+  min-height: 68px;
+  padding: 12px 15px;
+
+  width: 100%;
+}
+
+
+/* 勾選框 */
+.todo-check {
+  appearance: none;
+
+  width: 19px;
+  height: 19px;
+
+  border: 2px solid #bdc6ce;
+  border-radius: 5px;
+
+  margin: 0;
+
+  flex: 0 0 auto;
+
+  cursor: pointer;
+  position: relative;
+  background: white;
+}
+
+
+/* 待辦內容區 */
+.todo-content {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+
+  flex: 1;
+
+  min-width: 0;
+}
+
+
+/* 待辦名稱 */
+.todo-name {
+  width: 230px;
+  min-width: 230px;
+
+  font-size: 14px;
+  font-weight: 700;
+
+  color: #36414a;
+
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+
+/* 原本上下排列的資訊改成橫向 */
+.todo-info {
+  display: flex;
+  align-items: center;
+  flex-wrap: nowrap;
+
+  gap: 7px;
+
+  margin-top: 0;
+
+  white-space: nowrap;
+}
+
+
+/* 備註改成橫向欄位 */
+.todo-note {
+  width: 260px;
+  min-width: 260px;
+
+  color: #9099a1;
+  font-size: 12px;
+
+  margin-top: 0;
+
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+
+/* 編輯按鈕固定在最右側 */
+.todo-actions {
+  display: flex;
+  gap: 4px;
+
+  margin-left: auto;
+
+  flex: 0 0 auto;
+}
+
+
+/* 子任務 */
+.subtasks {
+  border-top: 1px solid #edf0f2;
+
+  background: #fafbfc;
+
+  padding: 10px 15px 10px 48px;
+
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 18px;
+
+  min-width: 900px;
+
+  overflow-x: auto;
+}
+
+
+.subtask-row {
+  display: flex;
+  align-items: center;
+
+  gap: 8px;
+
+  margin: 0;
+
+  font-size: 12px;
+  color: #67727c;
+
+  white-space: nowrap;
+}
+
+
+/* 水平捲軸樣式 */
+.todo-list::-webkit-scrollbar,
+.subtasks::-webkit-scrollbar {
+  height: 8px;
+}
+
+.todo-list::-webkit-scrollbar-track,
+.subtasks::-webkit-scrollbar-track {
+  background: #f1f3f5;
+  border-radius: 10px;
+}
+
+.todo-list::-webkit-scrollbar-thumb,
+.subtasks::-webkit-scrollbar-thumb {
+  background: #c4cbd1;
+  border-radius: 10px;
+}
+
+.todo-list::-webkit-scrollbar-thumb:hover,
+.subtasks::-webkit-scrollbar-thumb:hover {
+  background: #aab3bb;
+}
 
     .todo-row {
       border: 1px solid #e9edf1;
